@@ -1,6 +1,5 @@
-coverage==4.3.4
-Django==2.0.3
-psycopg2==2.7.4
+Django==2.1.7
+psycopg2==2.7.7
 pytz==2018.3
-selenium==3.11.0
+selenium==3.141.0
 wheel==0.24.0
