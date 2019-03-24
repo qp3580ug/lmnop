@@ -19,14 +19,12 @@ def new_note(request, show_pk):
 
         form = NewNoteForm(request.POST)
         if form.is_valid():
-
-            note = form.save(commit=False);
-            if note.title and note.text:  # If note has both title and text
-                note.user = request.user
-                note.show = show
-                note.posted_date = timezone.now()
-                note.save()
-                return redirect('lmn:note_detail', note_pk=note.pk)
+            note = form.save(commit=False)
+            note.user = request.user
+            note.show = show
+            note.posted_date = timezone.now()
+            note.save()
+            return redirect('lmn:note_detail', note_pk=note.pk)
 
     else :
         form = NewNoteForm()
