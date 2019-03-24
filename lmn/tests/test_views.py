@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib import auth
 
-from ..models import Venue, Artist, Note, Show
+from lmn.models import Venue, Artist, Note, Show
 from django.contrib.auth.models import User
 
 import re, datetime
@@ -454,7 +454,7 @@ class TestUserAuthentication(TestCase):
     ''' Currently using much of Django's built-in login and registration system'''
 
     def test_user_registration_logs_user_in(self):
-        response = self.client.post(reverse('register'), {'username':'sam12345', 'email':'sam@sam.com', 'password1':'qwertyuiop', 'password2':'qwertyuiop', 'first_name':'sam', 'last_name' : 'sam'}, follow=True)
+        response = self.client.post(reverse('lmn:register'), {'username':'sam12345', 'email':'sam@sam.com', 'password1':'feRpj4w4pso3az', 'password2':'feRpj4w4pso3az', 'first_name':'sam', 'last_name' : 'sam'}, follow=True)
 
         # Assert user is logged in - one way to do it...
         user = auth.get_user(self.client)
@@ -469,7 +469,7 @@ class TestUserAuthentication(TestCase):
     def test_user_registration_redirects_to_correct_page(self):
         # TODO If user is browsing site, then registers, once they have registered, they should
         # be redirected to the last page they were at, not the homepage.
-        response = self.client.post(reverse('register'), {'username':'sam12345', 'email':'sam@sam.com', 'password1':'qwertyuiop', 'password2':'qwertyuiop', 'first_name':'sam', 'last_name' : 'sam'}, follow=True)
+        response = self.client.post(reverse('lmn:register'), {'username':'sam12345', 'email':'sam@sam.com', 'password1':'feRpj4w4pso3az@1!2', 'password2':'feRpj4w4pso3az', 'first_name':'sam', 'last_name' : 'sam'}, follow=True)
 
         self.assertRedirects(response, reverse('lmn:homepage'))   # FIXME Fix code to redirect to last page user was on before registration.
         self.assertContains(response, 'sam12345')  # Homepage has user's name on it

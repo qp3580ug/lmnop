@@ -7,27 +7,6 @@ from django.db import IntegrityError
 
 class TestUser(TestCase):
 
-    def test_create_user_all_fields_required(self):
-
-        # TODO is this testing the right thing? 
-
-        u = User()
-        with self.assertRaises(IntegrityError):
-            u.save()
-
-        u = User(username='bob')
-        with self.assertRaises(IntegrityError):
-            u.save()
-
-        u = User(username='bob', email='bob@bob.com')
-        with self.assertRaises(IntegrityError):
-            u.save()
-
-        u = User(username='bob', email='bob@bob.com', first_name='bob')
-        with self.assertRaises(IntegrityError):
-            u.save()
-
-
     def test_create_user_duplicate_username_fails(self):
 
         user = User(username='bob', email='bob@bob.com', first_name='bob', last_name='bob')

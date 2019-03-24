@@ -60,13 +60,13 @@ class RegistrationFormTests(TestCase):
     # missing fields
 
     def test_register_user_with_valid_data_is_valid(self):
-        form_data = { 'username' : 'bob' , 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop' }
+        form_data = { 'username' : 'bob' , 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'q!w$er^ty6ui7op' }
         form = UserRegistrationForm(form_data)
         self.assertTrue(form.is_valid())
 
 
     def test_register_user_with_missing_data_fails(self):
-        form_data = { 'username': 'bob', 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop' }
+        form_data = { 'username': 'bob', 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'q!w$er^ty6ui7op' }
         # Remove each key-value from dictionary, assert form not valid
         for field in form_data.keys():
             data = dict(form_data)
@@ -76,7 +76,7 @@ class RegistrationFormTests(TestCase):
 
 
     def test_register_user_with_password_mismatch_fails(self):
-        form_data = { 'username' : 'another_bob' , 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop2' }
+        form_data = { 'username' : 'another_bob' , 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'dr%$ESwsdgdfh' }
         form = UserRegistrationForm(form_data)
         self.assertFalse(form.is_valid())
 
@@ -88,7 +88,7 @@ class RegistrationFormTests(TestCase):
         bob.save()
 
         # attempt to create another user with same email
-        form_data = { 'username' : 'another_bob' , 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop' }
+        form_data = { 'username' : 'another_bob' , 'email' : 'bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'q!w$er^ty6ui7op' }
         form = UserRegistrationForm(form_data)
         self.assertFalse(form.is_valid())
 
@@ -100,7 +100,7 @@ class RegistrationFormTests(TestCase):
         bob.save()
 
         # attempt to create another user with same username
-        form_data = { 'username' : 'bob' , 'email' : 'another_bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop' }
+        form_data = { 'username' : 'bob' , 'email' : 'another_bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'q!w$er^ty6ui7op' }
         form = UserRegistrationForm(form_data)
         self.assertFalse(form.is_valid())
 
@@ -116,7 +116,7 @@ class RegistrationFormTests(TestCase):
 
         for invalid in invalid_username:
             # attempt to create another user with same username
-            form_data = { 'username' : invalid , 'email' : 'another_bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop' }
+            form_data = { 'username' : invalid , 'email' : 'another_bob@bob.com', 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'q!w$er^ty6ui7opq!w$er^ty6ui7op' }
             form = UserRegistrationForm(form_data)
             self.assertFalse(form.is_valid())
 
@@ -132,7 +132,7 @@ class RegistrationFormTests(TestCase):
 
         for invalid in invalid_email:
             # attempt to create another user with same username
-            form_data = { 'username' : 'another_bob' , 'email' : invalid, 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'qwertyuiop', 'password2' : 'qwertyuiop' }
+            form_data = { 'username' : 'another_bob' , 'email' : invalid, 'first_name' : 'bob', 'last_name' : 'whatever', 'password1' : 'q!w$er^ty6ui7op', 'password2' : 'q!w$er^ty6ui7op' }
             form = UserRegistrationForm(form_data)
             self.assertFalse(form.is_valid())
 
