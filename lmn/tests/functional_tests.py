@@ -14,10 +14,10 @@ class HomePageTest(LiveServerTestCase):
     ''' hello selenium '''
 
     def test_home_page(self):
-        browser = webdriver.Firefox()
-        browser.get('http://localhost:8000')
-        assert 'Welcome to Live Music Notes' in browser.page_source
+        browser = webdriver.Chrome()
+        browser.get(self.live_server_url)
         assert 'LMN' in browser.title
+        assert 'Welcome to Live Music Notes' in browser.page_source
         browser.quit()
 
 
@@ -26,7 +26,7 @@ class BrowseArtists(LiveServerTestCase):
     fixtures = ['fn_testing_users', 'fn_testing_artists', 'fn_testing_venues', 'fn_testing_shows', 'fn_testing_notes']
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
 
 
@@ -231,7 +231,7 @@ class BrowseVenues(LiveServerTestCase):
     fixtures = ['fn_testing_users', 'fn_testing_artists', 'fn_testing_venues', 'fn_testing_shows', 'fn_testing_notes']
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
 
         # When searching for elements, wait up to 3 seconds for element to appear of page. Needed
         # because page load time is slower than this script's execution time.
@@ -443,7 +443,7 @@ class TestNotes(LiveServerTestCase):
     fixtures = ['fn_testing_users', 'fn_testing_artists', 'fn_testing_venues', 'fn_testing_shows', 'fn_testing_notes']
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
@@ -570,7 +570,7 @@ class TestRegistration(LiveServerTestCase):
     fixtures = [ 'fn_testing_users' ]
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
@@ -630,7 +630,7 @@ class TestProfilePage(LiveServerTestCase):
     fixtures = ['fn_testing_users', 'fn_testing_artists', 'fn_testing_venues', 'fn_testing_shows', 'fn_testing_notes']
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
 
     def tearDown(self):
         self.browser.quit()

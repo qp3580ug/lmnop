@@ -52,11 +52,11 @@ python manage.py test lmn.tests.test_views.TestUserAuthentication.test_user_regi
 
 Install (upgrade to the latest version if you already have it) Firefox browser. It works best for automated functional testing with Selenium.
 
-Make sure you have the latest version of Firefox, and the most recent geckodriver, and latest Selenium.
+Make sure you have the latest version of Chrome, and the most recent chromedriver, and latest Selenium.
 
 geckodriver needs to be in path or you need to tell Selenium where it is. Pick an approach: http://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
 
-If your DB is at GCP, your tests might time out, and you might need to use longer waits http://selenium-python.readthedocs.io/waits.html
+If your DB is at AWS, your tests might time out, and you might need to use longer waits http://selenium-python.readthedocs.io/waits.html
 
 Start your server with `python manage.py runserver` and then
 
@@ -84,7 +84,7 @@ coverage report
 
 ### Optional, if wanting to install and use with local PostgreSQL
 
-A local PostgreSQL server will be faster than a GCP one.
+A local PostgreSQL server will be faster than a AWS one.
 https://github.com/DjangoGirls/tutorial-extensions/tree/master/en/optional_postgresql_installation
 
 Internet will have more recent instructions for installing PostgreSQL, start there.
