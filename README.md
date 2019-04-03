@@ -1,7 +1,10 @@
-#LMNOP
+# LMNOP
 
 ## Live Music Notes, Opinions, Photographs
 
+### Pre-requisites
+
+Install Postgres, create a database called LMNOP. Create a user called LMNOP and grant this user privileges on the LMNOP database. Set an environment variable LMNOP_DB_PW with the LMNOP user's password. 
 
 ### To install
 
@@ -82,7 +85,7 @@ coverage report
 ```
 
 
-### Optional, if wanting to install and use with local PostgreSQL
+### PostgreSQL
 
 A local PostgreSQL server will be faster than a AWS one.
 https://github.com/DjangoGirls/tutorial-extensions/tree/master/en/optional_postgresql_installation
