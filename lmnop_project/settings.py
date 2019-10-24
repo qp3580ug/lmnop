@@ -76,13 +76,23 @@ WSGI_APPLICATION = 'lmnop_project.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
+
+# Uncomment this when you are ready to use Postgres.
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'lmnop',
+    #     'USER' : 'lmnop',
+    #     'PASSWORD' : os.environ['LMNOP_DB_PW'],
+    #     'HOST' : 'localhost',
+    #     'PORT' : '5432',
+    # },
+
+    # When you use Postgres, comment out or remove this DB config. 
+    
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lmnop',
-        'USER' : 'lmnop',
-        'PASSWORD' : os.environ['LMNOP_DB_PW'],
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'lmnop.sqlite',
     }
 }
 
