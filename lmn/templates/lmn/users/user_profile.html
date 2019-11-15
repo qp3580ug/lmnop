@@ -7,6 +7,18 @@
 Includes list of user's notes with title and preview of text.
 Text truncated to 200 characters. -->
 
+<h2 id='username'>{{ user.username }}</h2>
+
+<div class='profile_info'>
+  <p id='users_name'>{{ user.first_name }} {{user.last_name}}</p>
+  <p id='email'>{{ user.email }}</p>
+  {% if user.username %}
+  <form action="{% url 'lmn:edit_user_profile' %}">
+    <input id="EditProfileForm" type='submit' value='Edit Profile'>
+  </form>
+  {% endif %}
+</div>
+
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
 
 {% for note in notes %}
