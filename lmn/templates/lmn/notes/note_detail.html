@@ -5,6 +5,11 @@
 <h2 id="note_page_title">{{ note.show.artist.name }} at {{ note.show.venue.name }} by <a href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ user.username }}</a></h2>
 
 <p id="note_title"><b>{{ note.title}}</b></p>
-<p id="note_text">{{ note.text }}</b>
+<p id="note_text">{{ note.text }}</b></p>
+{% if show.photo %}
+    <img src="{{ show.photo.url }}">
+{% else %}
+    <P>No photo uploaded</p>
+{% endif %}
 
 {% endblock %}
