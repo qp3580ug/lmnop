@@ -81,14 +81,14 @@ DATABASES = {
 
 # Uncomment this when you are ready to use Postgres.
 
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'users',
-         'USER' : 'nate',
-         'PASSWORD' : 'databasepassword',
-         'HOST' : '/cloudsql/lmnop-259314:us-central1:lmnop-db',
-         'PORT' : '5432',
-     },
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'users',
+        'USER' : 'nate',
+        'PASSWORD' : 'databasepassword',
+        'HOST' : '/cloudsql/lmnop-259314:us-central1:lmnop-db',
+        'PORT' : '5432',
+    }
 
     # When you use Postgres, comment out or remove this DB config. 
     
@@ -103,6 +103,8 @@ DATABASES = {
     #}
 }
 
+if not os.getenv('GAE_INSTANCE'):
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -140,8 +142,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+GS_STATIC_FILE_BUCKET = 'lmnop-259314.appspot.com'
+
+STATIC_URL = f'https://storage.cloud.google.com/{GS_STATIC_FILE_BUCKET}/static/'
 
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
