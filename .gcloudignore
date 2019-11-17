@@ -1,0 +1,9 @@
+*.pyc
+__pycache__
+venv
+.vscode
+.idea
+.git
+.gitignore
+.gcloudignore
+/setup.cfg
