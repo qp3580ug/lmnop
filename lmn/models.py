@@ -51,10 +51,12 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(blank=False)
+    photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
 
     def publish(self):
         posted_date = datetime.datetime.today()
         self.save()
 
     def __str__(self):
-        return 'Note for user ID {} for show ID {} with title {} text {} posted on {}'.format(self.user, self.show, self.title, self.text, self.posted_date)
+        photo_str = self.photo.url if self.photo else 'no photo'
+        return 'Note for user ID {} for show ID {} with title {} text {} posted on {}\nphoto {}'.format(self.user, self.show, self.title, self.text, self.posted_date, photo_str)
