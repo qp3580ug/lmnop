@@ -45,7 +45,6 @@ def edit_user_profile(request):
         return render(request, 'lmn/users/edit_user_profile.html', args)
 
 
-
 def register(request):
 
     if request.method == 'POST':
