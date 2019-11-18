@@ -20,7 +20,10 @@ Text truncated to 200 characters. -->
 </div>
 
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
+<p><div class="fb-like" data-href="request.build_absolute_uri" data-layout="standard"
+         data-action="like" data-show-faces="true" data-share="true"></div>
 
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"></a>
 {% for note in notes %}
 
 <div class='note' id="note_{{ note.pk }}">
@@ -28,6 +31,17 @@ Text truncated to 200 characters. -->
   <P class="note_info">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</P>
   <p class="note_text">{{ note.text|truncatechars:300}}</p>
   <p class="note_posted_at">{{ note.posted_date}}</p>
+<div class='row'>
+    <div class='col-sm-12'>
+    {{ instance.content|linebreaks }}<br/>
+    <hr/>
+    <hr/>
+    <div class="fb-comments" data-href="request.build_absolute_uri" data-width="" data-numposts="5">
+
+    </div>
+    </div>
+  <hr>
+
 </div>
 
 {% empty %}
