@@ -17,7 +17,7 @@ def new_note(request, show_pk):
 
     if request.method == 'POST' :
 
-        form = NewNoteForm(request.POST)
+        form = NewNoteForm(request.POST, request.FILES, instance=show)
         if form.is_valid():
             note = form.save(commit=False)
             note.user = request.user
