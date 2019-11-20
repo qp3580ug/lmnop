@@ -58,5 +58,5 @@ class Note(models.Model):
         self.save()
 
     def __str__(self):
-        photo_str = self.show.photo.url if self.photo else 'no photo'
+        photo_str = self.photo.url if self.photo else 'no photo'
         return 'Note for user ID {} for show ID {} with title {} text {} posted on {}\nPhoto {}'.format(self.user, self.show, self.title, self.text, self.posted_date, photo_str)
