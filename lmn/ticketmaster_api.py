@@ -11,6 +11,7 @@ def get_data(requests):
                 venue_list()
                 get_shows()
                 return HttpResponse('ok')
+                # gettign artist, venues and shows and providing an httpresponse if successful
         except Exception as e:
                 print(e)
                 return HttpResponse('failed')
@@ -18,7 +19,6 @@ def get_data(requests):
         
 def artist_list():
     
-    ticketmasterKey = "SJJrApYrXbEOEkWUk32lxQ3p9FMSLydJ"
     url = 'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=MN&apikey=SJJrApYrXbEOEkWUk32lxQ3p9FMSLydJ'
     
     artists = Artist.objects.all().order_by('name')
@@ -35,21 +35,16 @@ def artist_list():
                 new_artist.save()
                 print('artist '+ artist_name + ' added')
         ## calling api for events and finding artists
-        ## saving name and creating new Artist Object
+        ## saving name and creating new Artist Object if not already created
             else:
                 print('duplicate artist')
     except Exception as e:
         print(e)
         
 def venue_list():
-
-    ticketmasterKey = "SJJrApYrXbEOEkWUk32lxQ3p9FMSLydJ"
     
     url = 'https://app.ticketmaster.com/discovery/v2/venues.json?stateCode=MN&apikey=SJJrApYrXbEOEkWUk32lxQ3p9FMSLydJ'
-
-    venues = Venue.objects.all().order_by('name')
-    
-           
+  
     try:
         data = requests.get(url).json()
         venues = data['_embedded']['venues']
@@ -73,10 +68,7 @@ def get_shows():
 
         url = 'https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=MN&apikey=SJJrApYrXbEOEkWUk32lxQ3p9FMSLydJ'
         venues = Venue.objects.all().order_by('name')
-        artists = Artist.objects.all().order_by('name')
-
-        matching_a = False
-        matching_v = False
+        
         try:
             data = requests.get(url).json()
             events = data['_embedded']['events']
@@ -85,27 +77,21 @@ def get_shows():
                     artist_name = event['name']
                     venue_name = event['_embedded']['venues'][0]['name']
                     date = event['dates']['start']['dateTime']
+                    
+                    venues = Venue.objects.filter(name=venue_name)
+                    artists = Artist.objects.filter(name=artist_name)
 
+                    if(len(venues) > 0 and len(artists) > 0):
+                        matching_venue = venues[0]
+                        matching_artist = artists[0]
+                        new_show = Show(show_date = date, artist = matching_artist, venue = matching_venue)
+                        
+                        new_show.save()
+                    else:
+                        print('no shows for artists/venues currently')
                     
-                    
-                    for artist in artists:
-                            print(artist_name)
-                            print(artist.name)
-                            if (artist_name == artist.name):
-                                    print("matching")
-                                    for venue in venues:
-                                            print(venue_name)
-                                            print(venue.name)
-                                            if (venue_name == venue.name):
-                                                    print('matching venue too')
-                                                    new_show = Show(show_date = date, artist = artist_name, venue = venue_name)
-                                                    new_show.save()
-                                            else: print('No matching venue for artist ' + artist.name)
-                            else:
-                                print('no matching artist')
-        
-        except IntegrityError as e: 
-                print('duplicate entry added')
+        except Exception as e: 
+                print('Error fetching shows')
                 print(e)
 
 if __name__ == "__main__":
