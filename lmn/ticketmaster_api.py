@@ -81,12 +81,19 @@ def get_shows():
                     venues = Venue.objects.filter(name=venue_name)
                     artists = Artist.objects.filter(name=artist_name)
 
+
+
                     if(len(venues) > 0 and len(artists) > 0):
                         matching_venue = venues[0]
                         matching_artist = artists[0]
-                        new_show = Show(show_date = date, artist = matching_artist, venue = matching_venue)
-                        print('adding show')
-                        new_show.save()
+                        shows = Show.objects.filter(venue = matching_venue, artist = matching_artist, show_date = date)
+                        if (len(shows) == 0):
+                                new_show = Show(show_date = date, artist = matching_artist, venue = matching_venue)
+                                print('adding show')
+                                new_show.save()
+                        else:
+                            print('error adding duplicate show')
+                        
                     else:
                         print('no shows for artists/venues currently')
                     
