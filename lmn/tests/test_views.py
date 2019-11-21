@@ -350,7 +350,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
 
     def test_add_note_database_updated_correctly(self):
-
+        #Fails
         initial_note_count = Note.objects.count()
 
         new_note_url = reverse('lmn:new_note', kwargs={'show_pk':1})
@@ -371,7 +371,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
 
     def test_redirect_to_note_detail_after_save(self):
-
+        #Error
         initial_note_count = Note.objects.count()
 
         new_note_url = reverse('lmn:new_note', kwargs={'show_pk':1})
@@ -467,6 +467,7 @@ class TestUserAuthentication(TestCase):
 
 
     def test_user_registration_redirects_to_correct_page(self):
+        #Fails
         # TODO If user is browsing site, then registers, once they have registered, they should
         # be redirected to the last page they were at, not the homepage.
         response = self.client.post(reverse('lmn:register'), {'username':'sam12345', 'email':'sam@sam.com', 'password1':'feRpj4w4pso3az@1!2', 'password2':'feRpj4w4pso3az', 'first_name':'sam', 'last_name' : 'sam'}, follow=True)
