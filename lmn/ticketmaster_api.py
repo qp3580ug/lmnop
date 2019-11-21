@@ -32,6 +32,7 @@ def artist_list():
             artist_name = (event['name'])
             if artist_name not in artist_names:
                 new_artist = Artist(name = artist_name)
+                artist_names.append(artist_name)
                 new_artist.save()
                 print('artist '+ artist_name + ' added')
         ## calling api for events and finding artists
