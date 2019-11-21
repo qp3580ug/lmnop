@@ -85,7 +85,7 @@ def get_shows():
                         matching_venue = venues[0]
                         matching_artist = artists[0]
                         new_show = Show(show_date = date, artist = matching_artist, venue = matching_venue)
-                        
+                        print('adding show')
                         new_show.save()
                     else:
                         print('no shows for artists/venues currently')
