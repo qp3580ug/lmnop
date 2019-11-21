@@ -18,7 +18,7 @@ class TestUser(TestCase):
 
 
     def test_create_user_duplicate_username_case_insensitive_fails(self):
-
+        #Fails
         user = User(username='bob', email='bob@bob.com', first_name='bob', last_name='bob')
         user.save()
 
@@ -37,6 +37,7 @@ class TestUser(TestCase):
 
 
     def test_create_user_duplicate_email_case_insensitive_fails(self):
+        #Fails
         user = User(username='bob', email='bob@bob.com', first_name='bob', last_name='bob')
         user.save()
 

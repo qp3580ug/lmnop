@@ -7,3 +7,5 @@ venv
 .gitignore
 .gcloudignore
 /setup.cfg
+lmnop.sqlite
+env
