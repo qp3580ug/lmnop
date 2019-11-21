@@ -22,7 +22,7 @@ class TestUser(TestCase):
         user = User(username='bob', email='bob@bob.com', first_name='bob', last_name='bob')
         user.save()
 
-        user2 = User(username='Bob', email='another_bob@bob.com', first_name='bob', last_name='bob')
+        user2 = User(username='Bob'.lower(), email='another_bob@bob.com', first_name='bob', last_name='bob')
         with self.assertRaises(IntegrityError):
             user2.save()
 
@@ -40,6 +40,6 @@ class TestUser(TestCase):
         user = User(username='bob', email='bob@bob.com', first_name='bob', last_name='bob')
         user.save()
 
-        user2 = User(username='another_bob', email='Bob@bob.com', first_name='bob', last_name='bob')
+        user2 = User(username='another_bob', email='Bob@bob.com'.lower(), first_name='bob', last_name='bob')
         with self.assertRaises(IntegrityError):
             user2.save()
