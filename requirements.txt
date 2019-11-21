@@ -7,3 +7,4 @@ gunicorn==19.9.0
 psycopg2==2.8.4
 django-storages==1.7.2
 google-cloud-storage==1.23.0
+requests==2.22.0

@@ -1,0 +1,5 @@
+cron:
+- description: "get venue and artist details"
+  url: /ticketmaster
+  schedule: every 5 mins
+  
