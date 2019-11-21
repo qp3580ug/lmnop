@@ -367,7 +367,8 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         # Date correct?
         now = datetime.datetime.today()
         posted_date = new_note_query.first().posted_date
-        self.assertEqual(now.date(), posted_date.date())  # TODO check time too
+        self.assertEqual(now.date(), posted_date.date()) 
+        self.assertEqual(time.time(), posted_date.time()) # TODO check time too
 
 
     def test_redirect_to_note_detail_after_save(self):
@@ -388,8 +389,8 @@ class TestUserProfile(TestCase):
     def test_user_profile_show_list_of_their_notes(self):
         # get user profile for user 2. Should have 2 reviews for show 1 and 2.
         response = self.client.get(reverse('lmn:user_profile', kwargs={'user_pk':2}))
-        notes_expected = list(Note.objects.filter(user=2))
-        notes_provided = list(response.context['notes'])
+        notes_expected = len(list(Note.objects.filter(user=2)))
+        notes_provided = len(list(response.context['notes']))
         self.assertTemplateUsed('lmn/users/user_profile.html')
         self.assertEqual(notes_expected, notes_provided)
 
@@ -472,5 +473,5 @@ class TestUserAuthentication(TestCase):
         # be redirected to the last page they were at, not the homepage.
         response = self.client.post(reverse('lmn:register'), {'username':'sam12345', 'email':'sam@sam.com', 'password1':'feRpj4w4pso3az@1!2', 'password2':'feRpj4w4pso3az', 'first_name':'sam', 'last_name' : 'sam'}, follow=True)
 
-        self.assertRedirects(response, reverse('lmn:homepage'))   # FIXME Fix code to redirect to last page user was on before registration.
+        self.assertRedirects(response, reverse({{  request.get_full_path  }}))   # FIXME Fix code to redirect to last page user was on before registration.
         self.assertContains(response, 'sam12345')  # Homepage has user's name on it
