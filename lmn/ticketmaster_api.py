@@ -7,8 +7,8 @@ from django.db import IntegrityError
 
 def get_data(requests):
         try:
-                artist_list()
                 venue_list()
+                artist_list()
                 get_shows()
                 return HttpResponse('ok')
                 # gettign artist, venues and shows and providing an httpresponse if successful

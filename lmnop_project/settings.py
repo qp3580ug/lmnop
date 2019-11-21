@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'users',
         'USER' : 'nate',
-        'PASSWORD' : 'LMNOP_PW',
+        'PASSWORD' : os.environ['LMNOP_PW'],
         'HOST' : '/cloudsql/lmnop-259314:us-central1:lmnop-db',
         'PORT' : '5432',
     }
