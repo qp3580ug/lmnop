@@ -6,8 +6,8 @@
 
 <p id="note_title"><b>{{ note.title}}</b></p>
 <p id="note_text">{{ note.text }}</b>
-    {% if note.show.photo %}
-        <img src="{{ note.show.photo.url }}">
+    {% if note.photo %}
+        <img src="{{ note.photo.url }}">
     {% else %}
         <P>No photo uploaded</p>
     {% endif %}
