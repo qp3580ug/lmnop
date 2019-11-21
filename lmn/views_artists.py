@@ -27,7 +27,7 @@ def artist_list(request):
         artists = Artist.objects.filter(name__icontains=search_name).order_by('name')
     else:
         artists = Artist.objects.all().order_by('name')
-
+    
     return render(request, 'lmn/artists/artist_list.html', {'artists':artists, 'form':form, 'search_term':search_name})
 
 
